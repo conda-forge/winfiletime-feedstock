@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/winfiletime-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/winfiletime-{{ version }}.tar.gz
   sha256: c7c0337ac9ca1af982f623433f93dcbdf5d950eebdf92cd822093311650978ba
   patches:
     # Version 2.0 includes a superfluous import that prevents the module from being imported. Patch it until a new version is released
@@ -15,15 +15,15 @@ source:
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   host:
-    - python >=3.7,<4.0
+    - python {{ python_min }}
     - poetry-core
     - pip
   run:
-    - python >=3.7.0,<4.0.0
+    - python >={{ python_min }},<4.0.0
 
 test:
   imports:
@@ -32,6 +32,7 @@ test:
     - pip check
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/jleclanche/winfiletime
