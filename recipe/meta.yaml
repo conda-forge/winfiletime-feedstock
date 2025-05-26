@@ -8,9 +8,6 @@ package:
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/winfiletime-{{ version }}.tar.gz
   sha256: 0fc30bd3ac05bff0894f9a07a4cf66247423203599bca276a9d53c450d0ceb29
-  patches:
-    # Version 2.0 includes a superfluous import that prevents the module from being imported. Patch it until a new version is released
-    - 0001-utc.patch
 
 build:
   noarch: python
